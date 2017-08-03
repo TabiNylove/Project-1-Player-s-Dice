@@ -1,3 +1,20 @@
 body {
-	background-color: pink;
+	background-color: rgb(201, 234, 237);
+}
+
+#header {
+	background-color: rgba(89, 165, 178, .4);
+	padding: 2em;
+}
+
+#formDiv {
+	background-color: rgba(89, 165, 178, .4);
+	padding-bottom: 2em;
+	margin-bottom: 3em;
+	box-shadow: 0px 3px 3px rgba(42, 78, 84, .6);
+}
+
+#results {
+	background-color: rgba(89, 165, 178, .4);
+	padding: 2em;
 }
