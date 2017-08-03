@@ -7,8 +7,32 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-
+<!-- title -->
+<div id="header" class="row">
+	<div class="col col-2 push-center">
+		<h1 class="title">Title</h1>
+	</div>
+</div>
+<!-- where the user inputs information -->
+<div id="formDiv">
+	<form class="form">
+		<div id="inputDiv" class="row gutters align-center">
+			<div class="col col-5">
+				<div class="form-item">
+					<input id="userInput" type="text" placeholder="Type in a Movie, Book, Game, ect.">
+				</div>
+			</div>
+			<div class="col col-1">
+				<button class="button">Search</button>
+			</div>
+		</div>
+	</form>
+<!-- where the results show up -->
+</div>
+<div id="results" class="row align-center around">
+	<div id="wiki" class="col col-4"></div>
+	<div id="video" class="col col-6"></div>
+</div>
 
 
 <script
