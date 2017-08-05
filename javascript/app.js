@@ -1,8 +1,21 @@
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDEncMpEGmZB-YzqtxpfuzxkXG1QvXRlGA",
+    authDomain: "click-4bcad.firebaseapp.com",
+    databaseURL: "https://click-4bcad.firebaseio.com",
+    projectId: "click-4bcad",
+    storageBucket: "click-4bcad.appspot.com",
+    messagingSenderId: "1076834614283"
+  };
+  firebase.initializeApp(config);
 
- //"279156-PlayersD-TA0FFDNE";
+// VARIABLES
 var apiKey = "279156-PlayersD-B5WE9ZBL"; 
 var queryURL = "https://tastedive.com/api/similar?q=red+hot+chili+peppers%2C+pulp+fiction&k=" + apiKey;
 
+//==============================================================
+
+ //"279156-PlayersD-TA0FFDNE";
 console.log(queryURL);
 	$.ajax({
       url: queryURL,
