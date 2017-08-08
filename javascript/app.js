@@ -2,8 +2,8 @@
 var search = "";
 var apiKey = "279156-PlayersD-B5WE9ZBL";
 
-//=======
-  // Initialize Firebase
+//==============================================================
+// FIREBASE
   var config = {
     apiKey: "AIzaSyDEncMpEGmZB-YzqtxpfuzxkXG1QvXRlGA",
     authDomain: "click-4bcad.firebaseapp.com",
@@ -16,27 +16,27 @@ var apiKey = "279156-PlayersD-B5WE9ZBL";
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
-// VARIABLES
-var search = "";
-var apiKey = "279156-PlayersD-B5WE9ZBL"; 
-var queryURL;
-var wikiURL;
 //==============================================================
+// VARIABLES
+var search = ""; // this is the user input in the form
+var apiKey = "279156-PlayersD-B5WE9ZBL"; // key for tastedive
+var queryURL; // basic URL for tastedive api
+var wikiURL; // basic URL for wiki api
+var youTubeApiKey; // key for youtube
+var youTubeQueryURL; // basic URL for youtube api
+var randResult; // random number that picks from the tastedive array
+var pickedThing; // response from tastedive associated with randResult 
+var outputVideo; //
+//==============================================================
+// TASTEDIVE
 
-
-
-
- //"279156-PlayersD-TA0FFDNE";
  $(".button").on('click', function(event){
      event.preventDefault();
 
-     // Retrieving user input
-
+    // Retrieving user input
     search = $("#userInput").val().trim();
     console.log(search);
-    // TasteDive API query
-
+    // put input into the query
     queryURL = "https://tastedive.com/api/similar?q=" + search  + "&k=" + apiKey;
     console.log(queryURL);
 
@@ -45,52 +45,48 @@ var wikiURL;
       contentType: 'application/json; charset=utf-8',
       method: "GET"
     }).done(function(response) {
-
+      // console tastedive object
     	console.log(response);
-
-      // Checking to see if user input returned. Then adding user input to firebase variables
+      // add search to term to firebase
+      // Check to see if user input exists, then add user input to firebase variables
       if(response.Similar.Results[0].Name) {
         console.log("valid search");
         database.ref().push(search);
       } else {
         console.log("not valid")
       }
-
-
-      // Getting a random suggestion from the 20 returned results
-
-    	var randResult = Math.floor(Math.random()*20);
+      // Get a random suggestion from the 20 returned results
+    	randResult = Math.floor(Math.random()*20);
     	console.log(randResult);
-    	var pickedThing = response.Similar.Results[randResult].Name;
+    	pickedThing = response.Similar.Results[randResult].Name;
     	console.log(pickedThing);
-
-
-//wikipedia api
+//==============================================================
+// WIKIPEDIA
         wikiURL = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + pickedThing + "&limit=1&namespace=0&format=json";
         $.ajax({
           url: wikiURL,
           method: "GET"
         }).done(function(response) {
+          //console the array
           console.log(response);
-          //add the wiki response to the html
+          //add the wiki response to the html div 'wiki'
             $('#wiki').prepend("<h3>" + response[1][0] + "</h3><p>" + response[2][0] + "</p><a href='" + 
               response[3][0] + "' target='_blank'>" + response[3][0] + "</a>");
 
         })
-      // Youtube API query
+//==============================================================
+// YOUTUBE
+      youTubeApiKey = "AIzaSyD5FZHeHpWCyo0-34E15x9TEmjf2smoFiU"; 
+      youTubeQueryURL = "https://www.googleapis.com/youtube/v3/search?q=" + pickedThing + "&key=" + youTubeApiKey + "&part=snippet"
 
-      var youTubeApiKey = "AIzaSyD5FZHeHpWCyo0-34E15x9TEmjf2smoFiU"; 
-      var youTubeQueryURL = "https://www.googleapis.com/youtube/v3/search?q=" + pickedThing + "&key=" + youTubeApiKey + "&part=snippet"
-      console.log(youTubeQueryURL);
-      var outputVideo;
-
-    $.ajax({
-      url: youTubeQueryURL,
-      method: "GET"
-    }).done(function(response) {
-        console.log(response);
+      $.ajax({
+        url: youTubeQueryURL,
+        method: "GET"
+      }).done(function(response) {
+          console.log(response);
+      })
     })
-    })
+//==============================================================
 // outputVideo = response...
 
   })
