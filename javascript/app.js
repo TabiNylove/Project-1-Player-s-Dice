@@ -70,8 +70,8 @@ var outputVideo; //
           //console the array
           console.log(response);
           //add the wiki response to the html div 'wiki'
-            $('#wiki').prepend("<h3>" + response[1][0] + "</h3><p>" + response[2][0] + "</p><a href='" + 
-              response[3][0] + "' target='_blank'>" + response[3][0] + "</a>");
+            $('#results').prepend("<div class='col col-4'><h3>" + response[1][0] + "</h3><p>" + response[2][0] + "</p><a href='" + 
+              response[3][0] + "' target='_blank'>" + response[3][0] + "</a></div>");
 
         })
 //==============================================================
@@ -83,18 +83,22 @@ var outputVideo; //
         url: youTubeQueryURL,
         method: "GET"
       }).done(function(response) {
-          console.log(response);
+          console.log(response.items[1].id.videoId);
+          outputVideo ='<iframe width="520" height="480" src="https://www.youtube.com/embed/' 
+          + response.items[1].id.videoId + '"></iframe>';
+          // append the video to the html <div> 'video'
+          $("#results").prepend("<div class='col col-6'>" + outputVideo + "</div>");
+          //$("#video").prepend(outputVideo);
       })
     })
 //==============================================================
 // outputVideo = response...
-
+    
   })
 
 
 
-outputVideo ='<iframe width="854" height="480" src="https://www.youtube.com/embed/ETJmJsTbzM0" frameborder="0" allowfullscreen></iframe>';
-$("#video").append(outputVideo);
+
 
 //     var youTubeApiKey = "AIzaSyD5FZHeHpWCyo0-34E15x9TEmjf2smoFiU"; 
 // var youTubeQueryURL = "https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=" + youTubeApiKey + "&part=snippet,contentDetails,statistics,status"
