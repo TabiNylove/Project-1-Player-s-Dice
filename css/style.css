@@ -7,6 +7,16 @@ body {
 	padding: 2em;
 }
 
+#container {
+    @include grid-row;
+}
+#sidebar {
+    @include flex-item-width(300px);
+}
+#content {
+    @include flex-item-auto;
+}
+
 #formDiv {
 	background-color: rgba(89, 165, 178, .4);
 	padding-bottom: 2em;
@@ -17,4 +27,8 @@ body {
 #results {
 	background-color: rgba(89, 165, 178, .4);
 	padding: 2em;
+}
+
+#loginButton {
+	float: right;
 }

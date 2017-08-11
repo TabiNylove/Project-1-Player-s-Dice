@@ -4,40 +4,141 @@
 	<title></title>
 	<link rel="stylesheet" href="css/kube.min.css">
 	<link rel="stylesheet" href="css/kube.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 </head>
 <body>
-<!-- title -->
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+
+  	<!-- button that appears on mobile collapse -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <!-- 'brand' on left -->
+    <a class="navbar-brand" href="#">Player's Dice</a>
+  </div>
+
+  <!-- nav buttons on regular display -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<button id="toLogin" type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#logModal">Login</button>
+		<button id="toRegi" type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#regModal">Register</button>
+  </div>
+</nav>
+
+
+<!-- LOGIN MODAL -->
+<div id="logModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    	<!-- content head-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+
+      <!-- content body -->
+      <div class="modal-body">
+    		<p>Login to view your preferences:</p>
+	    	<form class="form">
+	    		<div class="form-item">
+	    			<input id="uid" type="text" placeholder="Your Username">
+	    			<input id="password" type="password" placeholder="Password">
+	    		</div>
+	    	</form>
+    	</div>
+
+    	<!-- content foot (register button) -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="regiButton" type="button" class="btn btn-default">Login</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- REGISTER MODAL -->
+<div id="regModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    	<!-- content head-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Register</h4>
+      </div>
+
+      <!-- content body -->
+      <div class="modal-body">
+    		<p>Register to keep track of your preferences:</p>
+	    	<form class="form">
+	    		<div class="form-item">
+	    			<input id="REG-uid" type="text" placeholder="Enter a Username">
+	    			<input id="REG-password" type="password" placeholder="Create a Password">
+	    		</div>
+	    	</form>
+    	</div>
+
+    	<!-- content foot (register button) -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="regiButton" type="button" class="btn btn-default">Register</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- TITLE -->
 <div id="header" class="row">
 	<div class="col col-2 push-center">
 		<h1 class="title">Title</h1>
 	</div>
 </div>
+
 <!-- where the user inputs information -->
 <div id="formDiv">
 	<form class="form">
 		<div id="inputDiv" class="row gutters align-center">
+
+			<!-- text form -->
 			<div class="col col-5">
 				<div class="form-item">
 					<input id="userInput" type="text" placeholder="Type in a Movie, Book, Game, ect.">
 				</div>
 			</div>
+
+			<!-- submit button -->
 			<div class="col col-1">
 				<button class="button" type="submit">Search</button>
 			</div>
 		</div>
 	</form>
-<!-- where the results show up -->
-</div>
-<div id="results" class="row align-center around">
-	<div id="wiki" class="col col-6"></div>
-	<div id="video" class="col col-6"></div>
 </div>
 
+<!-- CONTENT RESULTS -->
+<div id="container">
+		<!-- where preferences are kept -->
+    <div id="sidebar"></div>
+		<!-- where the results show up -->
+    <div id="content">
+    		<div id="results" class="row align-center around">
+						<div id="wiki" class="col col-6"></div>
+						<div id="video" class="col col-6"></div>
+				</div>
+    </div>
+</div>
 
 <script
   src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="javascript/bootstrap.js"></script>
 <script src="javascript/app.js"></script>
 </body>
 </html>

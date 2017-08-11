@@ -26,6 +26,15 @@ var pickedThings = []; // response from tastedive associated with randResult
 var outputVideo; //
 //==============================================================
 // MODAL
+// login modal
+$("#toLogin").on("click", function() {
+    $("#logModal").modal('show'); 
+})
+// register modal
+$("#toRegi").on("click", function() {
+    $("#regModal").modal('show');
+})
+
 //==============================================================
 // TASTEDIVE
 $(".button").on('click', function(event) {
@@ -36,11 +45,15 @@ $(".button").on('click', function(event) {
     // put input into the query
     queryURL = "https://tastedive.com/api/similar?q=" + search + "&k=" + apiKey;
     console.log(queryURL);
+
+    // ajax call
     $.ajax({
             url: queryURL,
             contentType: 'application/json; charset=utf-8',
             method: "GET"
         }).done(function(response) {
+            
+        // response...
             // add search term to firebase
             // Check to see if user input exists, then add user input to firebase variables
             if (response.Similar.Results[0].Name) {
@@ -49,6 +62,7 @@ $(".button").on('click', function(event) {
             } else {
                 console.log("not valid")
             }
+
             // Do this three times:  
             for (var i = 0; i < 3; i++) {
                 // Get a random suggestion from the 20 returned results
@@ -98,8 +112,45 @@ function youtubeAPI(queryItem) {
         outputVideo = '<iframe width="300" height="230" src="https://www.youtube.com/embed/' +
             response.items[1].id.videoId + '"></iframe>';
         // append the iframe to the html <div> 'video'
-        $("#video").prepend("<div class='col col-6'>" + outputVideo + "</div>");
+        $("#video").prepend("<div class='video-container col col-6'>" + outputVideo + "</div>");
         // empty the pickedThings array
         pickedThings = [];
     })
 }
+
+//==============================================================
+// // REGISTER NEW ID
+// $(".regiButton").on('click', function(event){
+//   event.preventDefault();
+
+//   var loginInfo = {
+//     userId : $("#uid").val().trim(),
+//     password : $('#password').val().trim()
+// }
+
+//   data.push(loginInfo);
+
+//   database.ref('users').set({
+//     users: data
+//   });
+// });
+
+// //==============================================================
+// // LOGIN
+
+// $(".loginButton").on('click', function(event){
+//   event.preventDefault();
+
+//   var loginInfo = {
+//     userId : $("#uid").val().trim();
+//     password : $('#password').val().trim();
+//   }
+
+//   loginState = false;
+//   for (var i = 0; i < data.length; i++) {
+  
+//     if (loginInfo.userId === data[i].email && loginInfo.password === data[i].password) {
+//       loginState = true;
+//     }
+//   }
+//   }
