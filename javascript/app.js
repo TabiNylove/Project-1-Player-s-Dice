@@ -115,7 +115,7 @@ function youtubeAPI(queryItem) {
         method: "GET"
     }).done(function(response) {
         //set the iframe to a variable
-        outputVideo = '<iframe width="300" height="230" src="https://www.youtube.com/embed/' +
+        outputVideo = '<iframe width="800" height="230" src="https://www.youtube.com/embed/' +
             response.items[1].id.videoId + '"></iframe>';
         // append the iframe to the html <div> 'video'
         $("#video").prepend("<div class='video-container col col-6'>" + outputVideo + "</div>");
