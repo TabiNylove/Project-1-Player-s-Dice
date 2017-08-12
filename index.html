@@ -27,8 +27,8 @@
 
   <!-- nav buttons on regular display -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<button id="toLogin" type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#logModal">Login</button>
-		<button id="toRegi" type="button" class="btn btn-info navbar-btn navbar-right" data-toggle="modal" data-target="#regModal">Register</button>
+		<button id="toLogin" type="button" class="btn btn-info navbar-btn navbar-right"  data-target="#logModal">Login</button>
+		<button id="toRegi" type="button" class="btn btn-info navbar-btn navbar-right" data-target="#regModal">Register</button>
   </div>
 </nav>
 
@@ -40,7 +40,7 @@
 
     	<!-- content head-->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal"></button>
         <h4 class="modal-title" id="myModalLabel">Login</h4>
       </div>
 
@@ -50,6 +50,7 @@
 	    	<form class="form">
 	    		<div class="form-item">
 	    			<input id="uid" type="text" placeholder="Your Username">
+	    			<br>
 	    			<input id="password" type="password" placeholder="Password">
 	    		</div>
 	    	</form>
@@ -72,7 +73,7 @@
 
     	<!-- content head-->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal"></button>
         <h4 class="modal-title" id="myModalLabel">Register</h4>
       </div>
 
@@ -82,6 +83,7 @@
 	    	<form class="form">
 	    		<div class="form-item">
 	    			<input id="REG-uid" type="text" placeholder="Enter a Username">
+	    			<br>
 	    			<input id="REG-password" type="password" placeholder="Create a Password">
 	    		</div>
 	    	</form>
@@ -136,8 +138,7 @@
     </div>
 </div>
 
-<script
-  src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="javascript/bootstrap.js"></script>
 <script src="javascript/app.js"></script>
 </body>
