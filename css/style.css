@@ -32,3 +32,12 @@ body {
 #loginButton {
 	float: right;
 }
+
+#toLogin {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#submit {
+    background-color: rgb(91, 192, 222);
+}

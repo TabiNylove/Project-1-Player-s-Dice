@@ -1,4 +1,4 @@
-
+$("#results").hide();
 //==============================================================
 // FIREBASE
 var config = {
@@ -40,6 +40,9 @@ $("#toRegi").on("click", function() {
 // TASTEDIVE
 $(".button").on('click', function(event) {
     event.preventDefault();
+    $("#results").show();
+    $('#wiki').empty();
+    $("#video").empty();
     // Retrieving user input
     search = $("#userInput").val().trim();
     console.log(search);
@@ -67,6 +70,7 @@ $(".button").on('click', function(event) {
 
             // Do this three times:  
             for (var i = 0; i < 3; i++) {
+
                 // Get a random suggestion from the 20 returned results
                 randResult = Math.floor(Math.random() * 20);
                 // if number is repeated ...
