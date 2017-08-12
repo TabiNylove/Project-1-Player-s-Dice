@@ -1,5 +1,4 @@
-var search = "";
-var apiKey = "279156-PlayersD-B5WE9ZBL";
+
 //==============================================================
 // FIREBASE
 var config = {
@@ -24,6 +23,8 @@ var randResult; // random number that picks from the tastedive array
 var randResultPrev; // randResult before the last
 var pickedThings = []; // response from tastedive associated with randResult 
 var outputVideo; //
+var loginState = false;
+var data = [];
 //==============================================================
 // MODAL
 // login modal
@@ -60,7 +61,8 @@ $(".button").on('click', function(event) {
                 console.log("valid search");
                 database.ref().push(search);
             } else {
-                console.log("not valid")
+                console.log("not valid");
+                console.log(response);
             }
 
             // Do this three times:  
@@ -120,37 +122,39 @@ function youtubeAPI(queryItem) {
 
 //==============================================================
 // // REGISTER NEW ID
-// $(".regiButton").on('click', function(event){
-//   event.preventDefault();
+$("#regiButton").on('click', function(event){
+  event.preventDefault();
 
-//   var loginInfo = {
-//     userId : $("#uid").val().trim(),
-//     password : $('#password').val().trim()
-// }
+  var loginInfo = {
+    userId : $("#REG-uid").val().trim(),
+    password : $('#REG-password').val().trim()
+}
 
-//   data.push(loginInfo);
+  data.push(loginInfo);
 
-//   database.ref('users').set({
-//     users: data
-//   });
-// });
+  database.ref('users').set({
+    uinfo: data
+  });
+  $("#regModal").modal('hide'); 
+});
 
 // //==============================================================
 // // LOGIN
 
-// $(".loginButton").on('click', function(event){
-//   event.preventDefault();
+$("#loginButton").on('click', function(event){
+  event.preventDefault();
 
-//   var loginInfo = {
-//     userId : $("#uid").val().trim();
-//     password : $('#password').val().trim();
-//   }
+  var loginInfo = {
+    userId : $("#uid").val().trim(),
+    password : $('#password').val().trim()
+  }
 
-//   loginState = false;
-//   for (var i = 0; i < data.length; i++) {
+  loginState = false;
+  for (var i = 0; i < data.length; i++) {
   
-//     if (loginInfo.userId === data[i].email && loginInfo.password === data[i].password) {
-//       loginState = true;
-//     }
-//   }
-//   }
+    if (loginInfo.userId === data[i].email && loginInfo.password === data[i].password) {
+      loginState = true;
+    }
+  }
+$("#logModal").modal('hide');
+  })
